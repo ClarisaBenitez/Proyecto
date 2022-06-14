@@ -1,4 +1,3 @@
-
 package consulta;
 
 import Modelo.Cliente_modelo;
@@ -8,91 +7,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class Cliente_consulta extends conexion {
 
-public class Cliente_consulta extends conexion{
-      public boolean registrar (Cliente_modelo tCliente) {
-        
+    public boolean registrar(Cliente_modelo tCliente) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
         RegistroClientes registroClientes = new RegistroClientes();
-            
-        
-        String sql = "INSERT INTO clientes (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1,tCliente.getCedula());
-            ps.setString(2,tCliente.getNombre());
-            ps.setString(3,tCliente.getApellido());
-            ps.setString(4,tCliente.getTelefono());
-            ps.execute();
-            return true;
-            
-        } catch (SQLException e) {
-            
-            System.err.println(e);
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);            }
-        }
-        
-    }
-    
 
-    
-    public boolean modificar (Cliente_modelo tCliente) {
-        
-        
-        
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-        
-        String sql = "UPDATE clientes SET cedula=?, nombre=?, apellido=?, telefono=? WHERE idCliente=?";
-        
-        
+        String sql = "INSERT INTO clientes (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
+
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1,tCliente.getCedula());
-            ps.setString(2,tCliente.getNombre());
-            ps.setString(3,tCliente.getApellido());
-            ps.setString(4,tCliente.getTelefono());
-            ps.setInt(5,tCliente.getIdCliente());
+            ps.setString(1, tCliente.getCedula());
+            ps.setString(2, tCliente.getNombre());
+            ps.setString(3, tCliente.getApellido());
+            ps.setString(4, tCliente.getTelefono());
             ps.execute();
             return true;
-            
+
         } catch (SQLException e) {
-            
-            System.err.println(e);
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);            }
-        }
-        
-    }
-    
-    public boolean eliminar (Cliente_modelo tCliente) {
-        
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-        
-        String sql = "DELETE FROM clientes WHERE idCliente=?";
-        
-        
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1,tCliente.getIdCliente());
-            ps.execute();
-            return true;
-            
-        } catch (SQLException e) {
-            
+
             System.err.println(e);
             return false;
         } finally {
@@ -102,23 +40,80 @@ public class Cliente_consulta extends conexion{
                 System.err.println(e);
             }
         }
-        
+
     }
-    
-    public boolean buscar (Cliente_modelo tCliente) {
-        
+
+    public boolean modificar(Cliente_modelo tCliente) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE clientes SET cedula=?, nombre=?, apellido=?, telefono=? WHERE idCliente=?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, tCliente.getCedula());
+            ps.setString(2, tCliente.getNombre());
+            ps.setString(3, tCliente.getApellido());
+            ps.setString(4, tCliente.getTelefono());
+            ps.setInt(5, tCliente.getIdCliente());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
+    public boolean eliminar(Cliente_modelo tCliente) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM clientes WHERE idCliente=?";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, tCliente.getIdCliente());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
+    public boolean buscar(Cliente_modelo tCliente) {
+
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        
+
         String sql = "SELECT * FROM clientes WHERE cedula=?";
-        
-        
+
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1,tCliente.getCedula());
+            ps.setString(1, tCliente.getCedula());
             rs = ps.executeQuery();
-            
+
             if (rs.next()) {
                 tCliente.setIdCliente(Integer.parseInt(rs.getString("idCliente")));
                 tCliente.setCedula(rs.getString("cedula"));
@@ -126,10 +121,10 @@ public class Cliente_consulta extends conexion{
                 tCliente.setApellido(rs.getString("apellido"));
                 tCliente.setTelefono(rs.getString("telefono"));
                 return true;
-            }      
-            return false;  
+            }
+            return false;
         } catch (SQLException e) {
-            
+
             System.err.println(e);
             return false;
         } finally {
@@ -139,7 +134,33 @@ public class Cliente_consulta extends conexion{
                 System.err.println(e);
             }
         }
-        
+
     }
-    
+
+    ////////
+    public Object grilla() throws SQLException {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM clientes";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("telefono")
+                };
+                return datos;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
 }
