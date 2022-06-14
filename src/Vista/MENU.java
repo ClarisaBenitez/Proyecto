@@ -179,6 +179,11 @@ public class MENU extends javax.swing.JFrame {
                 Menu_salirMouseClicked(evt);
             }
         });
+        Menu_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_salirActionPerformed(evt);
+            }
+        });
         MENU.add(Menu_salir);
 
         barraMenus.add(MENU);
@@ -472,8 +477,13 @@ public class MENU extends javax.swing.JFrame {
 
     private void Menu_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu_salirMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        
     }//GEN-LAST:event_Menu_salirMouseClicked
+
+    private void Menu_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_salirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_Menu_salirActionPerformed
 
     /**
      * @param args the command line arguments
