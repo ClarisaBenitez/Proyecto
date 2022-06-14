@@ -84,7 +84,8 @@ public class Empleado_controlador implements ActionListener{
                JOptionPane.showMessageDialog(null,"Registro Modificado");
                limpiar();
                try {
-                   listaEmpleados.cargar_grilla();
+                   ListaEmpleadosReg lista = new ListaEmpleadosReg();
+                   lista.cargar_grilla();
                } catch (SQLException ex) {
                    Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -102,7 +103,8 @@ public class Empleado_controlador implements ActionListener{
                JOptionPane.showMessageDialog(null,"Registro Eliminado");
                limpiar();
                  try {
-                   listaEmpleados.cargar_grilla();
+                     ListaEmpleadosReg lista = new ListaEmpleadosReg();
+                   lista.cargar_grilla();
                } catch (SQLException ex) {
                    Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                }
