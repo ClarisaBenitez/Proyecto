@@ -182,6 +182,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
 
         Empleado_consulta empelado_consulta = new Empleado_consulta();
         Object datos = empelado_consulta.grilla();
+        
         cursor.addRow((Object[]) datos);
     }
 }
