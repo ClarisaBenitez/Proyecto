@@ -16,7 +16,7 @@ public class Empleado_controlador implements ActionListener{
     private Empleado_modelo tEmpleado;
     private Empleado_consulta cEmpleado;
     private RegistroEmpleados rEmpleado;
-    private ListaEmpleadosReg listaEmpleados;
+    
     
     public Empleado_controlador (Empleado_modelo tEmpleado, Empleado_consulta cEmpleado, RegistroEmpleados rEmpleado) {
         
@@ -60,7 +60,8 @@ public class Empleado_controlador implements ActionListener{
                JOptionPane.showMessageDialog(null,"Registro Guardado");
                limpiar();
                  try {
-                   listaEmpleados.cargar_grilla();
+                     ListaEmpleadosReg lista = new ListaEmpleadosReg();
+                   lista.cargar_grilla();
                } catch (SQLException ex) {
                    Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                }
