@@ -53,6 +53,11 @@ public class Registrar_Visualizar_Cred extends javax.swing.JFrame {
         });
 
         btn_visualizar_cred.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/visualizar_prestamos.png"))); // NOI18N
+        btn_visualizar_cred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_visualizar_credActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/atras_lindo...png"))); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,6 +137,12 @@ public class Registrar_Visualizar_Cred extends javax.swing.JFrame {
        new MENU().setVisible(true);  
        dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void btn_visualizar_credActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualizar_credActionPerformed
+        // TODO add your handling code here:
+         ListaPrestamo registro_cliente= new ListaPrestamo();
+        registro_cliente.setVisible(true);
+    }//GEN-LAST:event_btn_visualizar_credActionPerformed
 
     /**
      * @param args the command line arguments
