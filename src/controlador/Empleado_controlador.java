@@ -56,19 +56,22 @@ public class Empleado_controlador implements ActionListener{
            tEmpleado.setTelefono(rEmpleado.txt_Telefono_empleado.getText()); 
            
            
-           if (cEmpleado.registrar(tEmpleado) ) {
-               JOptionPane.showMessageDialog(null,"Registro Guardado");
-               limpiar();
-                 try {
-                     ListaEmpleadosReg lista = new ListaEmpleadosReg();
-                   lista.cargar_grilla();
-               } catch (SQLException ex) {
-                   Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
-               }
-           } else {
-               JOptionPane.showMessageDialog(null,"Error al Guardar");
-               limpiar();
-           }
+            try {
+                if (cEmpleado.registrar(tEmpleado) ) {
+                    JOptionPane.showMessageDialog(null,"Registro Guardado");
+                    limpiar();
+                    try {
+                        ListaEmpleadosReg lista = new ListaEmpleadosReg();
+                        lista.cargar_grilla();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,"Error al Guardar");
+                    limpiar();
+                }} catch (SQLException ex) {
+                Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
      
     
