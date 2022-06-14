@@ -1,18 +1,31 @@
 
 package Vista;
 
+import bd.conexion;
+import consulta.Cliente_consulta;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
 public class ListaSueldo extends javax.swing.JFrame {
-
+javax.swing.table.DefaultTableModel cursor;///// este 
     /**
      * Creates new form ListaSueldo
      */
     public ListaSueldo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel(); //// este 
+        
+        grilla(); // llamar al metodo al iniciar la ventana 
+
     }
 
     /**
@@ -29,7 +42,7 @@ public class ListaSueldo extends javax.swing.JFrame {
         ScrollBar_Sueldo = new javax.swing.JScrollBar();
         eti_atras_listaEmple = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        grilla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +59,7 @@ public class ListaSueldo extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,7 +67,7 @@ public class ListaSueldo extends javax.swing.JFrame {
                 "Nombre", "Apellido", "Cedula", "Salario "
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(grilla);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,9 +166,40 @@ public class ListaSueldo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollBar ScrollBar_Sueldo;
     private javax.swing.JLabel eti_atras_listaEmple;
+    public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-}
+
+
+ private void grilla() {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM sueldo";
+        try {
+
+            for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
+                cursor.removeRow(i);
+            }
+            conexion con = new conexion();
+            Connection conn = con.getConexion();
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("sueldo")};
+                cursor.addRow(datos);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }}

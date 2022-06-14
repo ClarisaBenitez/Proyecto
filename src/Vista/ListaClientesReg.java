@@ -1,17 +1,28 @@
 package Vista;
 import bd.conexion;
+import consulta.Cliente_consulta;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //import controlador.Cliente_controlador;
 
 
 public class ListaClientesReg extends javax.swing.JFrame {
-
+  javax.swing.table.DefaultTableModel cursor;///// este 
     
     public ListaClientesReg() {
         initComponents();
         this.setLocationRelativeTo(null);
         conexion conexion = new conexion();
-         javax.swing.table.DefaultTableModel cursor;
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel(); //// este 
+        
+        grilla(); // llamar al metodo al iniciar la ventana 
+
+       //  javax.swing.table.DefaultTableModel cursor;
          
       //  Cliente_controlador controlador = new Cliente_controlador();
        // controlador.cargarGrilla();
@@ -248,7 +259,7 @@ public class ListaClientesReg extends javax.swing.JFrame {
     private javax.swing.JLabel eti_atras_listaEmple;
     private javax.swing.JLabel eti_atras_listaEmple1;
     private javax.swing.JLabel eti_salir_listaEmple;
-    private javax.swing.JTable grilla;
+    public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -256,6 +267,36 @@ public class ListaClientesReg extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
+    private void grilla() {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM clientes";
+        try {
+
+            for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
+                cursor.removeRow(i);
+            }
+            conexion con = new conexion();
+            Connection conn = con.getConexion();
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("telefono")};
+                cursor.addRow(datos);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     
 }

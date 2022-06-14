@@ -5,11 +5,22 @@
  */
 package Vista;
 
+import bd.conexion;
+import consulta.Cliente_consulta;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
 public class ListaPrestamo extends javax.swing.JFrame {
+
+    javax.swing.table.DefaultTableModel cursor;///// este 
 
     /**
      * Creates new form ListaPrestamo
@@ -17,6 +28,10 @@ public class ListaPrestamo extends javax.swing.JFrame {
     public ListaPrestamo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel(); //// este 
+
+        grilla();
     }
 
     /**
@@ -33,7 +48,7 @@ public class ListaPrestamo extends javax.swing.JFrame {
         ScrollBar_Prestamo = new javax.swing.JScrollBar();
         eti_atras_listaEmple = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        grilla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +65,7 @@ public class ListaPrestamo extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,10 +73,10 @@ public class ListaPrestamo extends javax.swing.JFrame {
                 "Nombre", "Apellido", "Cedula", "Monto Prestado", "Cantidad cuota", "Cuota mensual"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Cantidad cuota");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Cuota mensual");
+        jScrollPane1.setViewportView(grilla);
+        if (grilla.getColumnModel().getColumnCount() > 0) {
+            grilla.getColumnModel().getColumn(4).setHeaderValue("Cantidad cuota");
+            grilla.getColumnModel().getColumn(5).setHeaderValue("Cuota mensual");
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -116,8 +131,8 @@ public class ListaPrestamo extends javax.swing.JFrame {
 
     private void eti_atras_listaEmpleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eti_atras_listaEmpleMouseClicked
         // TODO add your handling code here:
-       new Registrar_Visualizar_Cred().setVisible(true);  
-       dispose();
+        new Registrar_Visualizar_Cred().setVisible(true);
+        dispose();
     }//GEN-LAST:event_eti_atras_listaEmpleMouseClicked
 
     /**
@@ -158,9 +173,43 @@ public class ListaPrestamo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollBar ScrollBar_Prestamo;
     private javax.swing.JLabel eti_atras_listaEmple;
+    public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void grilla() {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM credito";
+        try {
+
+            for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
+                cursor.removeRow(i);
+            }
+            conexion con = new conexion();
+            Connection conn = con.getConexion();
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("monto"),
+                    rs.getString("cantcuota"),
+                    rs.getString("cumensual")};
+
+                cursor.addRow(datos);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

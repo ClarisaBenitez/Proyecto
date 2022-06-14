@@ -1,7 +1,9 @@
 
 package consulta;
 
+
 import Modelo.Facturacion_modelo;
+//import Vista.ListaFacturacion;
 import bd.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +11,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+
 public class Facturacion_consulta extends conexion {
-    
+  
     public boolean registrar (Facturacion_modelo tFac) {
         
         PreparedStatement ps = null;
         Connection con = getConexion();
+        
+        
         
         String sql = "INSERT INTO facturacion (cedula, nombre, apellido, cobrar) VALUES (?,?,?,?)";
         
@@ -140,6 +145,7 @@ public class Facturacion_consulta extends conexion {
         }
         
     }
+    
 
     
 }

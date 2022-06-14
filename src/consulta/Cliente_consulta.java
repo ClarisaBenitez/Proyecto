@@ -1,22 +1,25 @@
 package consulta;
 
 import Modelo.Cliente_modelo;
-import Vista.RegistroClientes;
+//import Vista.ListaEmpleadosReg;
+//import Vista.RegistroClientes;
 import bd.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Cliente_consulta extends conexion {
+
 
     public boolean registrar(Cliente_modelo tCliente) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
-        RegistroClientes registroClientes = new RegistroClientes();
+        
+        
+        //RegistroClientes registroClientes = new RegistroClientes();
 
         String sql = "INSERT INTO clientes (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
 
@@ -137,30 +140,6 @@ public class Cliente_consulta extends conexion {
 
     }
 
-    ////////
-    public Object grilla() throws SQLException {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT * FROM clientes";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            
-            while (rs.next()) {
-                Object[] datos = {
-                    rs.getString("cedula"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("telefono")
-                };
-                return datos;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-
-    }
+    
 }

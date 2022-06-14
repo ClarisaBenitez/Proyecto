@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class ListaEmpleadosReg extends javax.swing.JFrame {
 
-    javax.swing.table.DefaultTableModel cursor;
+    javax.swing.table.DefaultTableModel cursor;///// este 
 
     /**
      * Creates new form ListaEmpleadosReg
@@ -30,9 +30,9 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     public ListaEmpleadosReg() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
-        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel(); //// este 
         
-        grilla();
+        grilla(); // llamar al metodo al iniciar la ventana 
 
         //  cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
     }

@@ -1,28 +1,27 @@
 package consulta;
 
 import Modelo.Empleado_modelo;
-import Vista.ListaEmpleadosReg;
+//import Vista.ListaEmpleadosReg;
 import bd.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.TableModel;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import javax.swing.table.TableModel;
 
 
 public class Empleado_consulta extends conexion {
 
-      javax.swing.table.DefaultTableModel cursor;
+     
       
     public boolean registrar(Empleado_modelo tEmpleado) throws SQLException {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
          
-           ListaEmpleadosReg  ListaEmpleados = new ListaEmpleadosReg();
-           TableModel grilla = (javax.swing.table.DefaultTableModel) ListaEmpleados.grilla.getModel();
+          
 
         String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
 
@@ -142,33 +141,4 @@ public class Empleado_consulta extends conexion {
 
     }
 
-    public void grilla() throws SQLException {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        ListaEmpleadosReg lista = new ListaEmpleadosReg();
-        
-        String sql = "SELECT * FROM empleados";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-             while (rs.next()) {
-                Object[] datos = {
-                    rs.getString("cedula"),
-                    rs.getString("nombre"),
-                    rs.getString("apellido"),
-                    rs.getString("cedula")};
-
-                cursor.addRow(datos);
-            }
-
-        } 
-        
-        
-        catch (SQLException ex) {
-            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
 }
