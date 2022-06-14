@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  */
 public class ListaEmpleadosReg extends javax.swing.JFrame {
 
+    javax.swing.table.DefaultTableModel cursor;
 
     /**
      * Creates new form ListaEmpleadosReg
@@ -29,9 +30,9 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     public ListaEmpleadosReg() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        grilla();
 
-      //  cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
-        cargar_grilla();
+        //  cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
     }
 
     /**
@@ -174,9 +175,35 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void cargar_grilla() throws SQLException {
-        Empleado_consulta empelado_consulta = new Empleado_consulta();
-        empelado_consulta.grilla();
+    public void grilla() throws SQLException {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM empleados";
+        try {
+
+            for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
+                cursor.removeRow(i);
+            }
+            conexion con = new conexion();
+            Connection conn = con.getConexion();
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("cedula")};
+                cursor.addRow(datos);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-    
+
 }

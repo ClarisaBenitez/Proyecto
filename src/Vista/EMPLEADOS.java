@@ -29,7 +29,7 @@ public class EMPLEADOS extends javax.swing.JFrame {
                 initComponents();
                 this.setLocationRelativeTo(null);
                 
-                EmpleadosReg.cargar_grilla();
+                EmpleadosReg.grilla();
             } catch (SQLException ex) {
                 Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -159,7 +159,7 @@ public class EMPLEADOS extends javax.swing.JFrame {
             // TODO add your handling code here:
             ListaEmpleadosReg lista_empleados= new ListaEmpleadosReg();
             lista_empleados.setVisible(true);
-            EmpleadosReg.cargar_grilla();
+            EmpleadosReg.grilla();
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);

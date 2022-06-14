@@ -62,7 +62,7 @@ public class Empleado_controlador implements ActionListener{
                     limpiar();
                     try {
                         ListaEmpleadosReg lista = new ListaEmpleadosReg();
-                        lista.cargar_grilla();
+                      //  lista.cargar_grilla();
                     } catch (SQLException ex) {
                         Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -88,7 +88,7 @@ public class Empleado_controlador implements ActionListener{
                limpiar();
                try {
                    ListaEmpleadosReg lista = new ListaEmpleadosReg();
-                   lista.cargar_grilla();
+                  // lista.cargar_grilla();
                } catch (SQLException ex) {
                    Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -107,7 +107,7 @@ public class Empleado_controlador implements ActionListener{
                limpiar();
                  try {
                      ListaEmpleadosReg lista = new ListaEmpleadosReg();
-                   lista.cargar_grilla();
+           //        lista.cargar_grilla();
                } catch (SQLException ex) {
                    Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
                }
