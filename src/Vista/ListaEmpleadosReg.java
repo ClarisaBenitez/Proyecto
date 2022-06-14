@@ -1,22 +1,37 @@
 package Vista;
+
+import bd.conexion;
+import consulta.Cliente_consulta;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Admin
  */
 public class ListaEmpleadosReg extends javax.swing.JFrame {
 
+    javax.swing.table.DefaultTableModel cursor;
+
     /**
      * Creates new form ListaEmpleadosReg
      */
-    public ListaEmpleadosReg() {
+    public ListaEmpleadosReg() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
+        cargar_grilla();
     }
 
     /**
@@ -30,10 +45,9 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ScrollBar_Empleado = new javax.swing.JScrollBar();
         eti_atras_listaEmple = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        grilla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +64,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -58,7 +72,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
                 "Nombre", "Apellido", "Cedula", "Telefono"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(grilla);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -71,13 +85,11 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 252, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 524, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ScrollBar_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +101,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addComponent(eti_atras_listaEmple))
                 .addGap(60, 60, 60)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(ScrollBar_Empleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -113,8 +123,8 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
 
     private void eti_atras_listaEmpleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eti_atras_listaEmpleMouseClicked
         // TODO add your handling code here:
-       new EMPLEADOS().setVisible(true);  
-       dispose();
+        new EMPLEADOS().setVisible(true);
+        dispose();
     }//GEN-LAST:event_eti_atras_listaEmpleMouseClicked
 
     /**
@@ -147,17 +157,30 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaEmpleadosReg().setVisible(true);
+                try {
+                    new ListaEmpleadosReg().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListaEmpleadosReg.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollBar ScrollBar_Empleado;
     private javax.swing.JLabel eti_atras_listaEmple;
+    private javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargar_grilla() throws SQLException {
+        for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
+            cursor.removeRow(i);
+        }
+
+        Cliente_consulta cliente_consulta = new Cliente_consulta();
+        Object datos = cliente_consulta.grilla();
+        cursor.addRow((Object[]) datos);
+    }
 }

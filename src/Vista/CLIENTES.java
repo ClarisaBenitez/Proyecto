@@ -142,6 +142,8 @@ public class CLIENTES extends javax.swing.JFrame {
 
     private void btn_visualizar_registro_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualizar_registro_clienteActionPerformed
      
+        ListaClientesReg registro_cliente= new ListaClientesReg();
+        registro_cliente.setVisible(true);
     }//GEN-LAST:event_btn_visualizar_registro_clienteActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
