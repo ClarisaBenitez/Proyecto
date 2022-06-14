@@ -115,6 +115,11 @@ public class MENU extends javax.swing.JFrame {
         MENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/principal_menu.png"))); // NOI18N
         MENU.setText("Menu  ");
         MENU.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
+        MENU.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MENUMouseClicked(evt);
+            }
+        });
         MENU.add(Separador7);
 
         Menu_Clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/cliente_menu.png"))); // NOI18N
@@ -169,6 +174,11 @@ public class MENU extends javax.swing.JFrame {
 
         Menu_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/x_menu.png"))); // NOI18N
         Menu_salir.setText("Salir");
+        Menu_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Menu_salirMouseClicked(evt);
+            }
+        });
         MENU.add(Menu_salir);
 
         barraMenus.add(MENU);
@@ -454,6 +464,16 @@ public class MENU extends javax.swing.JFrame {
         facturacion.setVisible(true);
         this.dispose(); 
     }//GEN-LAST:event_Menu_facturacionActionPerformed
+
+    private void MENUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MENUMouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_MENUMouseClicked
+
+    private void Menu_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Menu_salirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_Menu_salirMouseClicked
 
     /**
      * @param args the command line arguments
