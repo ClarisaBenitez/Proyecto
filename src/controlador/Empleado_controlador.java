@@ -2,16 +2,21 @@
 package controlador;
 
 import Modelo.Empleado_modelo;
+import Vista.ListaEmpleadosReg;
 import Vista.RegistroEmpleados;
 import consulta.Empleado_consulta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Empleado_controlador implements ActionListener{
     private Empleado_modelo tEmpleado;
     private Empleado_consulta cEmpleado;
     private RegistroEmpleados rEmpleado;
+    private ListaEmpleadosReg listaEmpleados;
     
     public Empleado_controlador (Empleado_modelo tEmpleado, Empleado_consulta cEmpleado, RegistroEmpleados rEmpleado) {
         
@@ -54,6 +59,11 @@ public class Empleado_controlador implements ActionListener{
            if (cEmpleado.registrar(tEmpleado) ) {
                JOptionPane.showMessageDialog(null,"Registro Guardado");
                limpiar();
+                 try {
+                   listaEmpleados.cargar_grilla();
+               } catch (SQLException ex) {
+                   Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+               }
            } else {
                JOptionPane.showMessageDialog(null,"Error al Guardar");
                limpiar();
@@ -72,6 +82,12 @@ public class Empleado_controlador implements ActionListener{
            if (cEmpleado.modificar(tEmpleado) ) {
                JOptionPane.showMessageDialog(null,"Registro Modificado");
                limpiar();
+               try {
+                   listaEmpleados.cargar_grilla();
+               } catch (SQLException ex) {
+                   Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+               }
+               
            } else {
                JOptionPane.showMessageDialog(null,"Error al Modificar");
                limpiar();
@@ -84,6 +100,11 @@ public class Empleado_controlador implements ActionListener{
            if (cEmpleado.eliminar(tEmpleado) ) {
                JOptionPane.showMessageDialog(null,"Registro Eliminado");
                limpiar();
+                 try {
+                   listaEmpleados.cargar_grilla();
+               } catch (SQLException ex) {
+                   Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+               }
            } else {
                JOptionPane.showMessageDialog(null,"Error al Eliminar");
                limpiar();

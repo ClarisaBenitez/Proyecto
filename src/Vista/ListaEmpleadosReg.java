@@ -175,7 +175,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    private void cargar_grilla() throws SQLException {
+    public void cargar_grilla() throws SQLException {
         for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
             cursor.removeRow(i);
         }

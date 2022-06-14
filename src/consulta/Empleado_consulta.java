@@ -18,7 +18,6 @@ public class Empleado_consulta extends conexion {
         
         PreparedStatement ps = null;
         Connection con = getConexion();
-        RegistroEmpleados registroempleados= new RegistroEmpleados();
       
         String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
         
