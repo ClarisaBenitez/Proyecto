@@ -3,6 +3,9 @@ package Vista;
 import Modelo.Empleado_modelo;
 import consulta.Empleado_consulta;
 import controlador.Empleado_controlador;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -141,10 +144,15 @@ public class EMPLEADOS extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AgregarEmpleadoActionPerformed
 
     private void btn_visualizarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visualizarEmpleadoActionPerformed
-        // TODO add your handling code here:
-        //ListaEmpleadosReg lista_empleados= new ListaEmpleadosReg();
-       // lista_empleados.setVisible(true);
-       // this.dispose();
+        try {
+            // TODO add your handling code here:
+            ListaEmpleadosReg lista_empleados= new ListaEmpleadosReg();
+            lista_empleados.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_btn_visualizarEmpleadoActionPerformed
 
     private void eti_atrasEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eti_atrasEmpleadoMouseClicked
