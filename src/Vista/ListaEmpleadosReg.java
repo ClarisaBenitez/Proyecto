@@ -2,6 +2,7 @@ package Vista;
 
 import bd.conexion;
 import consulta.Cliente_consulta;
+import consulta.Empleado_consulta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -179,8 +180,8 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
             cursor.removeRow(i);
         }
 
-        Cliente_consulta cliente_consulta = new Cliente_consulta();
-        Object datos = cliente_consulta.grilla();
+        Empleado_consulta empelado_consulta = new Empleado_consulta();
+        Object datos = empelado_consulta.grilla();
         cursor.addRow((Object[]) datos);
     }
 }
