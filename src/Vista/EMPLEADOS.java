@@ -18,13 +18,24 @@ import java.util.logging.Logger;
  * @author Admin
  */
 public class EMPLEADOS extends javax.swing.JFrame {
-
+  ListaEmpleadosReg EmpleadosReg;
     /**
      * Creates new form EMPLEADOS
      */
     public EMPLEADOS() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        try {
+            this.EmpleadosReg = new ListaEmpleadosReg();
+            try {
+                initComponents();
+                this.setLocationRelativeTo(null);
+                
+                EmpleadosReg.cargar_grilla();
+            } catch (SQLException ex) {
+                Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -148,6 +159,7 @@ public class EMPLEADOS extends javax.swing.JFrame {
             // TODO add your handling code here:
             ListaEmpleadosReg lista_empleados= new ListaEmpleadosReg();
             lista_empleados.setVisible(true);
+            EmpleadosReg.cargar_grilla();
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(EMPLEADOS.class.getName()).log(Level.SEVERE, null, ex);
