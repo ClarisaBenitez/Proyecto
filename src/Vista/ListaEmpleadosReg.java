@@ -169,7 +169,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eti_atras_listaEmple;
-    private javax.swing.JTable grilla;
+    public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -181,8 +181,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
         }
 
         Empleado_consulta empelado_consulta = new Empleado_consulta();
-        Object datos = empelado_consulta.grilla();
-        
-        cursor.addRow((Object[]) datos);
+        empelado_consulta.grilla();
     }
+    
 }

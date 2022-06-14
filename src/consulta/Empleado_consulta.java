@@ -1,6 +1,7 @@
 package consulta;
 
 import Modelo.Empleado_modelo;
+import Vista.ListaEmpleadosReg;
 import Vista.RegistroEmpleados;
 import bd.conexion;
 import java.sql.Connection;
@@ -9,13 +10,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.Cursor.cursor;
 
 public class Empleado_consulta extends conexion {
 
-    public boolean registrar(Empleado_modelo tEmpleado) {
+      javax.swing.table.DefaultTableModel cursor;
+      
+    public boolean registrar(Empleado_modelo tEmpleado) throws SQLException {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
+         
+           ListaEmpleadosReg  ListaEmpleados = new ListaEmpleadosReg();
+        cursor = (javax.swing.table.DefaultTableModel) ListaEmpleados.grilla.getModel();
 
         String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
 
@@ -135,7 +142,7 @@ public class Empleado_consulta extends conexion {
 
     }
 
-    public Object grilla() throws SQLException {
+    public void grilla() throws SQLException {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -145,24 +152,22 @@ public class Empleado_consulta extends conexion {
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+             while (rs.next()) {
+                Object[] datos = {
+                    rs.getString("cedula"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("cedula")};
 
-            if (rs.next()) {
-                while (rs.next()) {
-                    Object[] datos = {
-                        rs.getString("cedula"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
-                        rs.getString("telefono")
-                    };
-                    return datos;
-                }
-
+                cursor.addRow(datos);
             }
 
-        } catch (SQLException ex) {
+        } 
+        
+        
+        catch (SQLException ex) {
             Logger.getLogger(Cliente_consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
 
     }
 }
