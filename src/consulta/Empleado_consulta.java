@@ -2,7 +2,6 @@ package consulta;
 
 import Modelo.Empleado_modelo;
 import Vista.ListaEmpleadosReg;
-import Vista.RegistroEmpleados;
 import bd.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javafx.scene.Cursor.cursor;
+import javax.swing.table.TableModel;
+
 
 public class Empleado_consulta extends conexion {
 
@@ -22,7 +22,7 @@ public class Empleado_consulta extends conexion {
         Connection con = getConexion();
          
            ListaEmpleadosReg  ListaEmpleados = new ListaEmpleadosReg();
-        cursor = (javax.swing.table.DefaultTableModel) ListaEmpleados.grilla.getModel();
+           TableModel grilla = (javax.swing.table.DefaultTableModel) ListaEmpleados.grilla.getModel();
 
         String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
 
@@ -147,6 +147,7 @@ public class Empleado_consulta extends conexion {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
+        ListaEmpleadosReg lista = new ListaEmpleadosReg();
         
         String sql = "SELECT * FROM empleados";
         try {

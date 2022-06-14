@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  */
 public class ListaEmpleadosReg extends javax.swing.JFrame {
 
-    javax.swing.table.DefaultTableModel cursor;
 
     /**
      * Creates new form ListaEmpleadosReg
@@ -31,7 +30,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
+      //  cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
         cargar_grilla();
     }
 
@@ -171,15 +170,11 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     private javax.swing.JLabel eti_atras_listaEmple;
     public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     public void cargar_grilla() throws SQLException {
-        for (int i = grilla.getRowCount() - 1; i >= 0; i--) {
-            cursor.removeRow(i);
-        }
-
         Empleado_consulta empelado_consulta = new Empleado_consulta();
         empelado_consulta.grilla();
     }
