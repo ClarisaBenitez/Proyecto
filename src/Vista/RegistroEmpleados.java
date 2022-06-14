@@ -15,7 +15,7 @@ public class RegistroEmpleados extends javax.swing.JFrame {
             this.setTitle("Formulario de Registro Empleados");
             this.setLocationRelativeTo(null);
             ListaEmpleadosReg EmpleadosReg = new ListaEmpleadosReg();
-            EmpleadosReg.grilla();
+           // EmpleadosReg.grilla();
                     } catch (SQLException ex) {
             Logger.getLogger(RegistroEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         }

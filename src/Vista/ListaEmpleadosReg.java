@@ -30,6 +30,8 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     public ListaEmpleadosReg() throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
+        
         grilla();
 
         //  cursor = (javax.swing.table.DefaultTableModel) grilla.getModel();
@@ -175,7 +177,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public void grilla() throws SQLException {
+    private void grilla() {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -196,7 +198,7 @@ public class ListaEmpleadosReg extends javax.swing.JFrame {
                     rs.getString("cedula"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
-                    rs.getString("cedula")};
+                    rs.getString("telefono")};
                 cursor.addRow(datos);
             }
 
