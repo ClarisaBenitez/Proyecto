@@ -23,6 +23,9 @@ import consulta.Sueldo_consulta;
 import controlador.Credito_controlador;
 import controlador.Facturacion_controlador;
 import controlador.Sueldo_controlador;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MENU extends javax.swing.JFrame {
@@ -361,9 +364,13 @@ public class MENU extends javax.swing.JFrame {
     }//GEN-LAST:event_AgregarEmpleadosActionPerformed
 
     private void VisualizarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarEmpleadosActionPerformed
-        ListaEmpleadosReg lempleado= new ListaEmpleadosReg();
-        lempleado.setVisible(true);
-        this.dispose(); 
+        try {
+            ListaEmpleadosReg lempleado= new ListaEmpleadosReg();
+            lempleado.setVisible(true); 
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MENU.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_VisualizarEmpleadosActionPerformed
