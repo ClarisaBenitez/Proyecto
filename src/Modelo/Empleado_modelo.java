@@ -7,15 +7,17 @@ public class Empleado_modelo {
     private String apellido;
     private String cedula;
     private String telefono; 
-    private int sueldo_idSueldo;
+    private String sueldo_idSueldo;
 
-    public int getSueldo_idSueldo() {
+    public String getSueldo_idSueldo() {
         return sueldo_idSueldo;
     }
 
-    public void setSueldo_idSueldo(int sueldo_idSueldo) {
+    public void setSueldo_idSueldo(String sueldo_idSueldo) {
         this.sueldo_idSueldo = sueldo_idSueldo;
     }
+
+    
     
 
     public int getIdEmpleado() {
