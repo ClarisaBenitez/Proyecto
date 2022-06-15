@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class conexion {
     
-    String base = "bd_clari2";
+    String base = "bd_clari3";
     private final String user = "root"; //root???
     private final String password = "ua2022.py";
     private final String url = "jdbc:mysql://127.0.0.1:3306/" + base;
