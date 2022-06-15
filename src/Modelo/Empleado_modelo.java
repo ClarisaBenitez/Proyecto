@@ -2,6 +2,7 @@
 package Modelo;
 
 public class Empleado_modelo {
+    
     private int idEmpleado;
     private String nombre;
     private String apellido;

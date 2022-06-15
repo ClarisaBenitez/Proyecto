@@ -16,7 +16,7 @@ public class Empleado_consulta extends conexion {
 
      
       
-    public boolean registrar(Empleado_modelo tEmpleado) throws SQLException {
+    public boolean registrar(Empleado_modelo tEmpleado) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -62,6 +62,7 @@ public class Empleado_consulta extends conexion {
             ps.setString(3, tEmpleado.getApellido());
             ps.setString(4, tEmpleado.getTelefono());
             ps.setInt(5, tEmpleado.getIdEmpleado());
+            ps.setInt(6, tEmpleado.getSueldo_idSueldo());
 
             ps.execute();
             return true;
