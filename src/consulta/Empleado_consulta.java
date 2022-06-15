@@ -23,7 +23,7 @@ public class Empleado_consulta extends conexion {
          
           
 
-        String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono, sueldo_idSueldo) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono) VALUES (?,?,?,?)";
 
         try {
             ps = con.prepareStatement(sql);
@@ -31,7 +31,6 @@ public class Empleado_consulta extends conexion {
             ps.setString(2, tEmpleado.getNombre());
             ps.setString(3, tEmpleado.getApellido());
             ps.setString(4, tEmpleado.getTelefono());
-            ps.setString(5, tEmpleado.getSueldo_idSueldo());
             ps.execute();
             return true;
 
@@ -62,11 +61,7 @@ public class Empleado_consulta extends conexion {
             ps.setString(2, tEmpleado.getNombre());
             ps.setString(3, tEmpleado.getApellido());
             ps.setString(4, tEmpleado.getTelefono());
-            ps.setString(5, tEmpleado.getSueldo_idSueldo());
-            ps.setInt(6, tEmpleado.getIdEmpleado());
-           
-            
-            
+            ps.setInt(5, tEmpleado.getIdEmpleado());
 
             ps.execute();
             return true;
@@ -129,7 +124,6 @@ public class Empleado_consulta extends conexion {
                 tEmpleado.setNombre(rs.getString("nombre"));
                 tEmpleado.setApellido(rs.getString("apellido"));
                 tEmpleado.setTelefono(rs.getString("telefono"));
-                tEmpleado.setSueldo_idSueldo(rs.getString("sueldo_idSueldo"));
                 return true;
             }
             return false;

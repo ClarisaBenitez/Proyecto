@@ -52,7 +52,6 @@ public class Empleado_controlador implements ActionListener{
            tEmpleado.setNombre(rEmpleado.txt_Nombre.getText()); 
            tEmpleado.setApellido(rEmpleado.txt_Apellido.getText()); 
            tEmpleado.setTelefono(rEmpleado.txt_Telefono_empleado.getText()); 
-           tEmpleado.setSueldo_idSueldo((rEmpleado.txtIdSueldo.getText())); 
            
            
           
@@ -73,7 +72,6 @@ public class Empleado_controlador implements ActionListener{
            tEmpleado.setNombre(rEmpleado.txt_Nombre.getText()); 
            tEmpleado.setApellido(rEmpleado.txt_Apellido.getText()); 
            tEmpleado.setTelefono(rEmpleado.txt_Telefono_empleado.getText()); 
-           tEmpleado.setSueldo_idSueldo(rEmpleado.txtIdSueldo.getText()); 
            
 
            if (cEmpleado.modificar(tEmpleado) ) {
@@ -107,7 +105,7 @@ public class Empleado_controlador implements ActionListener{
                rEmpleado.txt_Nombre.setText(tEmpleado.getNombre());
                rEmpleado.txt_Apellido.setText(tEmpleado.getApellido());
                rEmpleado.txt_Telefono_empleado.setText(tEmpleado.getTelefono());
-               rEmpleado.txtIdSueldo.setText(tEmpleado.getSueldo_idSueldo());
+
            
            } else {
                JOptionPane.showMessageDialog(null,"No se enccontró resultado");
