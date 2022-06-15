@@ -2,7 +2,7 @@
 package Modelo;
 
 public class Sueldo_modelo {
-     private int idSueldo;
+    private int idSueldo;
     private String cedula;
     private String nombre;
     private String apellido;
