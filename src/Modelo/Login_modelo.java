@@ -3,6 +3,7 @@ package Modelo;
 
 
 public class Login_modelo {
+    
     private String usuario;
     private String password;
 
