@@ -23,7 +23,7 @@ public class Empleado_consulta extends conexion {
          
           
 
-        String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono, sueldo_idSueldo) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO empleados (cedula, nombre, apellido, telefono, sueldo_idSueldo) VALUES (?,?,?,?,?)";
 
         try {
             ps = con.prepareStatement(sql);
