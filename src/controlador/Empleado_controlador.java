@@ -54,15 +54,14 @@ public class Empleado_controlador implements ActionListener{
            tEmpleado.setTelefono(rEmpleado.txt_Telefono_empleado.getText()); 
            
            
-            try {
+          
                 if (cEmpleado.registrar(tEmpleado) ) {
                     JOptionPane.showMessageDialog(null,"Registro Guardado");
                     limpiar();
                 } else {
                     JOptionPane.showMessageDialog(null,"Error al Guardar");
                     limpiar();
-                }} catch (SQLException ex) {
-                Logger.getLogger(Empleado_controlador.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
      
