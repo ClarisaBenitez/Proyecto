@@ -186,6 +186,11 @@ public class FACTURACION extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         btnRegistrar.setText("Cobrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         eti_atras_fact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imageness/atras_lindo...png"))); // NOI18N
         eti_atras_fact.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -328,6 +333,10 @@ public class FACTURACION extends javax.swing.JFrame {
        new Cobrar_Visualizar_Fact().setVisible(true);  
        dispose();
     }//GEN-LAST:event_eti_atras_factMouseClicked
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments

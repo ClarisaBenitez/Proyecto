@@ -2,12 +2,21 @@
 package Modelo;
 
 public class Empleado_modelo {
-    
     private int idEmpleado;
     private String nombre;
     private String apellido;
     private String cedula;
     private String telefono; 
+    private int sueldo_idSueldo;
+
+    public int getSueldo_idSueldo() {
+        return sueldo_idSueldo;
+    }
+
+    public void setSueldo_idSueldo(int sueldo_idSueldo) {
+        this.sueldo_idSueldo = sueldo_idSueldo;
+    }
+    
 
     public int getIdEmpleado() {
         return idEmpleado;

@@ -7,6 +7,7 @@ public class Cliente_modelo {
     private String apellido;
     private String cedula;
     private String telefono;
+    
 
     public int getIdCliente() {
         return idCliente;
